@@ -179,19 +179,19 @@ Structures.extend('GuildMember' , (member) => {
             let nexBadge = unLockedBadges[1]
             let allBadges = bot.config.rozetler;
             let dolular = [
-                "🟩", 
-                "🟧",
-                "🟨",
-                "🟫",
-                "🟪",
-                "🟥",
-                "🟥",
-                "🟥",
-                "🟥",
-                "🟦",
+                {_colorCode : "#78b159"  , emoji : "🟩"}, 
+                {_colorCode : "#f4900c"  , emoji : "🟧"},
+                {_colorCode : "#fdcb58"  , emoji : "🟨"},
+                {_colorCode : "#c1694f"  , emoji : "🟫"},
+                {_colorCode : "#aa8ed6"  , emoji : "🟪"},
+                {_colorCode : "#dd2e44"  , emoji : "🟥"},
+                {_colorCode : "#dd2e44"  , emoji : "🟥"},
+                {_colorCode : "#dd2e44"  , emoji : "🟥"},
+                {_colorCode : "#dd2e44"  , emoji : "🟥"},
+                {_colorCode : "#55acee"  , emoji : "🟦"},
             ].random()
 
-            let embed = new MessageEmbed().setColor("RANDOM").setAuthor(this.user.tag , this.user.avatarURL({dynamic : true})).setDescription(`<@!${this.id}> kişisinin rozet bilgileri aşağıda belirtildiği gibidir.
+            let embed = new MessageEmbed().setColor(dolular._colorCode).setAuthor(this.user.tag , this.user.avatarURL({dynamic : true})).setDescription(`<@!${this.id}> kişisinin rozet bilgileri aşağıda belirtildiği gibidir.
            > Şuanda <@&${currentBadge.rol}>  rozetinde sahipsiniz.
            > Bir sonra rozet[<@&${nexBadge.rol}>] için ${Number(nexBadge.sayı - totalRegister).withEmoji()} 
            kayıt daha yapman gerekiyor.
@@ -214,7 +214,7 @@ Structures.extend('GuildMember' , (member) => {
                     const _total = Math.floor((current/max)*uzunluk);
                     let string = '';
                     for(let i = 0; i < uzunluk; i++){
-                        string += i < _total ? `${dolular}` : `⬜`
+                        string += i < _total ? `${dolular.emoji}` : `⬜`
                     }
                      return string;
                  }
