@@ -1,6 +1,6 @@
-const { Database } = require("wio.db");
+const { JsonDatabase } = require("wio.db");
 
-class AlpSu_Database extends Database {
+class AlpSu_Database extends JsonDatabase {
    constructor(...seçenekler) {
        super(...seçenekler)
    }
