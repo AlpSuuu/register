@@ -3,7 +3,7 @@ module.exports = {
     name: 'isim',
     aliases: ['nick'],
     async execute(client, message , args) {
-     if(!message.member.isAuthorized() && message.member.isAdministrator()) return message.sent("Kayıt yapmak için yeterli yetkin yok.")
+     if(!message.member.isAuthorized() && !message.member.isAdministrator()) return message.sent("Kayıt yapmak için yeterli yetkin yok.")
      let kişi = message.mentions.members.first() || message.guild.members.cache.get(args[0])   
      if(!args[0] || !kişi) return message.sent("Lütfen ismi değiştirilecek kişiyi belirtiniz.")
      let mention = message.guild.members.cache.get(kişi.id)
