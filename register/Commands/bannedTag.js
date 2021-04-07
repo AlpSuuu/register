@@ -3,7 +3,7 @@ module.exports = {
     name: 'yasaklı-tag',
     aliases: ['yasaklıtag' , 'bannedtag'],
     async execute(client, message , args) {
-     if(!message.member.isAuthorized() && message.member.isAdministrator()) return message.sent("yeterli yetkin yok.")
+     if(!message.member.isAuthorized() && !message.member.isAdministrator()) return message.sent("yeterli yetkin yok.")
      let kişi = message.mentions.members.first() || message.guild.members.cache.get(args[0]) 
      if(!membe.isBannedTagges()) return message.sent("Bu kişi yasaklı taglarımıza sahip deil.")  
      let mention = message.guild.members.cache.get(kişi.id)
