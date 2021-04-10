@@ -191,11 +191,22 @@ Structures.extend('GuildMember' , (member) => {
                 {_colorCode : "#55acee"  , emoji : "🟦"},
             ].random()
 
+            if(currentBadge && nexBadge) var info = `
+            > Şuanda <@&${currentBadge.rol}>  rozetinde sahipsiniz.
+            > Bir sonra rozet[<@&${nexBadge.rol}>] için ${Number(nexBadge.sayı - totalRegister).withEmoji()} 
+            kayıt daha yapman gerekiyor.`
+
+            if(currentBadge && !nexBadge) var info = `
+            > Şuanda <@&${currentBadge.rol}>  rozetinde sahipsiniz. 
+            > Bu rozetten sonra tüm rozetleri kazanmış olacaksınız :).`
+
+            if(!currentBadge) var info = ` 
+           > Tüm rozetleri kazandınız tebrikler. :tada:`
+
             let embed = new MessageEmbed().setColor(dolular._colorCode).setAuthor(this.user.tag , this.user.avatarURL({dynamic : true})).setDescription(`<@!${this.id}> kişisinin rozet bilgileri aşağıda belirtildiği gibidir.
-           > Şuanda <@&${currentBadge.rol}>  rozetinde sahipsiniz.
-           > Bir sonra rozet[<@&${nexBadge.rol}>] için ${Number(nexBadge.sayı - totalRegister).withEmoji()} 
-           kayıt daha yapman gerekiyor.
+           ${info}
            `)
+                
             for(var O_o of allBadges) {
                 let bar = O_o.sayı > totalRegister ? createBar(totalRegister , O_o.sayı , 15) : "``Rozet İlerlemesi Tamamlandı!``"
                 let moreThan = O_o.sayı > totalRegister ? `Rozet henüz kazanılmadı rozeti kazanmak için ${O_o.sayı - totalRegister} kayıt daha yapaman gerekiyor` : "``Rozet Başarıyla Kazanıldı!``"
