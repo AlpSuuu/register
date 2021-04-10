@@ -5,8 +5,6 @@ Structures.extend("Message", (msg) => {
     class Message extends msg {
         constructor(...args) {
             super(...args)
-            this.serverAd = this.guild.name
-            this.server = this.guild,
             this.nowMs = new Date().getTime()
             this.booster = bot.config.booster
             this.tag = bot.config.tagınız
