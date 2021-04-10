@@ -30,7 +30,7 @@ Structures.extend('GuildMember' , (member) => {
         }
         async sendEmbed(sa) {
             if(!sa) return new TypeError("Gönderilecek Mesaj Belirtmelisin")
-            this.send(new MessageEmbed().setColor("RANDOM").setDescription(sa))
+            this.send(new MessageEmbed().setColor("RANDOM").setDescription(sa)).catch(console.error)
         }
          roller() { return this.roles.cache.array() }
          üstte() {
@@ -103,7 +103,7 @@ Structures.extend('GuildMember' , (member) => {
         }
     
         bannedTag() {
-            this.send(`Sunucumuzda Yasaklı taglar arasında bulunan tagı isminde tespit ettik ne yazıkki tagı çıkarmadan içeriye giremezsin.\nİsminde bulunup sunucumuzda yasaklı olan tag(lar) ==> ${this.fetchBannedTags()}`)
+            this.send(`Sunucumuzda Yasaklı taglar arasında bulunan tagı isminde tespit ettik ne yazıkki tagı çıkarmadan içeriye giremezsin.\nİsminde bulunup sunucumuzda yasaklı olan tag(lar) ==> ${this.fetchBannedTags()}`).catch(console.error)
             this.roleset(bot.config.yasaklı_tag_rol)
         }
     
