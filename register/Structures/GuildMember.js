@@ -94,12 +94,16 @@ Structures.extend('GuildMember' , (member) => {
         }
      
         fetchBannedTags() {
-            let yasaklılar = this.bannedTags , push = []
-            this.user.username.split("").forEach(x=> { 
-            if(yasaklılar.some(ax => ax === x) && !push.includes(x)) push.push(x)
-            })
-            if(!push || push.length === 0) return "not defined."
-            return push.map(x => x).join(" , ")
+          let array = this.bannedTags,
+           push = [],
+           obje = {...[array]},
+           values = Object.values(obje),
+           yasaklılar = values.toString().split(",")
+
+          for(var banned of yasaklılar) this.user.tag.toString().includes(banned) && !push.includes(banned) ? push.push(banned) : ""
+          
+          if(!push || push.length === 0) return "not defined."
+          return push.map(x => x).join(" , ")
         }
     
         bannedTag() {
