@@ -1,4 +1,3 @@
-const {MessageEmbed} = require("discord.js");
 module.exports = {
     name: 'register-info',
     aliases: ['kayıt-bilgi' , 'kayıt-bilgi'],
