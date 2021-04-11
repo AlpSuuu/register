@@ -38,10 +38,10 @@ Structures.extend('GuildMember' , (member) => {
          }
     
          roleadd(RoleID) {
-            return this.roles.add(RoleID).catch(function(err) { new RangeError("I encountered an error..." , err) })
+            return this.roles.add(RoleID).catch(console.error)
         }
         roleremove(RoleID) {
-            return this.roles.remove(RoleID).catch(function(err) { new RangeError("I encountered an error..." , err) })
+            return this.roles.remove(RoleID).catch(console.error)
         }
         roleset(roller) {
             if(typeof roller !== "object") roller = new Array(roller)
@@ -49,7 +49,7 @@ Structures.extend('GuildMember' , (member) => {
             if(this.roles.cache.has(this.booster)) roles = roller.concat(this.booster)
             else roles = roller
     
-            return this.roles.set(roles).catch(function(err) { new RangeError("I encountered an error.." , err) })
+            return this.roles.set(roles).catch(console.error)
         }
     
         setnick(tag , nick , age) {
@@ -62,12 +62,12 @@ Structures.extend('GuildMember' , (member) => {
             let nickk = nick.charAt(0).replace("i", "İ").toUpperCase() + nick.slice(1).toLowerCase()
             let tagg = this.user.tag.includes(this.tag) ? this.tag : this.untagged
             let Nick = `${tagg} ${nickk} | ${age}`
-            this.setNickname(Nick).catch(function(err) { new RangeError("I encountered an error..." , err) })
+            this.setNickname(Nick).catch(console.error)
         }
     
         setnickk(name) { 
             if(!name) return new TypeError("Pls enter nickname")
-            this.setNickname(name).catch(function(err) { new RangeError("I encountered an error..." , err) })
+            this.setNickname(name).catch(console.error)
         }
     
         isAuthorized() {
@@ -242,17 +242,15 @@ Structures.extend('GuildMember' , (member) => {
                     _date : data[_prop].date,
                     _number : data[_prop].number 
                 }
-            }).map((x , index) => `\`${index+1}-)\` [**#${x._number}**] | \`${x._nick}\` | ${x._type.replace(/nick/ , `**İsim Değiştirme!**`).replace(/woman/ , `<@&${this.womanroles[0]}>`).replace(/man/ , `<@&${this.manroles[0]}>`)} | ${this.guild.members.cache.get(x._admin.userID) ? `<@!${x._admin.userID}>` : x._admin.nickname} | **${x._date}**`)
-          
-            const splited = splitMessage(_dataKey, { maxLength: 2000 , char: "\n" });
+            }).map((x , index) => `\`${index+1}-)\` [**#${x._number}**] | \`${x._nick}\` | ${x._type.replace(/nick/ , `**İsim Değiştirme!**`).replace(/woman/ , `<@&${this.womanroles[0]}>`).replace(/man/ , `<@&${this.manroles[0]}>`)} | ${this.guild.members.cache.get(x._admin.userID) ? `<@!${x._admin.userID}>` : x._admin.displayName} | **${x._date}**`)
+            const splited = splitMessage(_dataKey, { maxLength: 1900 , char: "\n" });
+            let info = `**[Kayıt ID]-[Kayıt İsim]-[Kayıt Tip]-[Kayıt Yetkili]-[Kayıt Tarih]**\n\n`
             splited.forEach((x , index) => {
-                 if(index === 0 && splited.length === 1) return message.channel.send(embed.setDescription(x).setAuthor(`${this.user.tag} adlı kişinin geçmiş kayıtları` , this.user.avatarURL({dynamic : true})).setFooter(bot.config.footer))
-                 if(index === 0) return message.channel.send(embed.setDescription(x).setAuthor(`${this.user.tag} adlı kişinin geçmiş kayıtları` , this.user.avatarURL({dynamic : true})))
-                 if(index === splited.length) return message.channel.send(embed.setDescription(x).setFooter(bot.config.footer))
-                 if(index !== splited.length && index !== 0) message.channel.send(embed.setDescription(x))
+                 if(splited.length === 1) return message.channel.send(new MessageEmbed().setColor("RANDOM").setDescription(`${info}${x}`).setAuthor(`${this.user.tag} adlı kişinin geçmiş kayıtları` , this.user.avatarURL({dynamic : true})).setFooter(bot.config.footer))
+                 if(index === 0) return message.channel.send(new MessageEmbed().setColor("RANDOM").setDescription(`${info}${x}`).setAuthor(`${this.user.tag} adlı kişinin geçmiş kayıtları` , this.user.avatarURL({dynamic : true})))
+                 if(index === splited.length) return message.channel.send(new MessageEmbed().setColor("RANDOM").setDescription(x).setFooter(bot.config.footer))
+                 if(index !== splited.length && index !== 0) message.channel.send(new MessageEmbed().setColor("RANDOM").setDescription(x))
             })
-              
-           
         }
 
         man(tag , nick , age , message) {
