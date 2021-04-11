@@ -1,4 +1,3 @@
-const {MessageEmbed} = require("discord.js")
 module.exports = {
     name: 'erkek',
     aliases: ['e' , 'erkek' , 'man'],
