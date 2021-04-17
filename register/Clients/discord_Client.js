@@ -56,9 +56,9 @@ class AlpSu_Client_options extends Client {
     }
 
      nowDate() {
-      let a = moment(Date.now()+10800000).format("MM"),
-          b = moment(Date.now()+10800000).format("DD"),
-          c = moment(Date.now()+10800000).format("HH:mm:ss"),
+      let a = moment(Date.now()).format("MM"),
+          b = moment(Date.now()).format("DD"),
+          c = moment(Date.now()).format("HH:mm:ss"),
           d = `${b} ${a
           .replace(/01/, 'Ocak')
           .replace(/02/, 'Şubat')
