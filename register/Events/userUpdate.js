@@ -1,4 +1,5 @@
 module.exports = async(old , nev) => {
+    if(!old || !nev) return; 
     const guild = bot.guilds.cache.get(bot.config.serverID),
     log = guild.channels.cache.get(bot.config.taglog),
     newMember = nev.user.guild.members.cache.get(nev.user.id)
