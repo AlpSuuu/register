@@ -1,13 +1,17 @@
 const Database = require("../Clients/database_Client");
 const Client = require("../Clients/discord_Client"),
-     bot = global.bot = new Client(
+    bot = global.bot = new Client(
     {
         fetchAllMembers : true
     }
 ), 
-    db = global.Database = new Database("AlpSu_Database" , {})
+    db = global.Database = new Database(
+    {
+           databasePath:"../Database/AlpSuDatabase.json"
+    }
+)
      
-    Server = global.Server = bot.guilds.cache.get(bot.config.serverID)
+     Server = global.Server = bot.guilds.cache.get(bot.config.serverID)
      /*Functions :)*/
      Functions = require("../Structures/Functions"),
      /*Errors :)*/
