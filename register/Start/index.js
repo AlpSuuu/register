@@ -7,7 +7,7 @@ const Client = require("../Clients/discord_Client"),
 ), 
     db = global.Database = new Database(
     {
-           databasePath:"../Database/AlpSuDatabase.json"
+        databasePath:"../Database/AlpSuDatabase.json"
     }
 )
      
